@@ -205,7 +205,7 @@ def view_my_orders(user):
     has_orders = False
     for order in user_orders:
         has_orders = True
-        car = cars.find_one({"_id": order["car_id"]})
+        car = cars.find_one({"_id": ObjectId(order["car_id"])})
         print(
             f"Order ID: {order['_id']}\n"
             f"Car: {car['make']} {car['model']} ({car['year']})\n"
