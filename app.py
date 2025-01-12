@@ -72,7 +72,7 @@ def admin_dashboard():
         elif choice == "3":
             modify_inventory()
         elif choice == "4":
-            list_inventory()
+            view_cars()
         elif choice == "5":
             grant_inventory_privileges()
         elif choice == "6":
@@ -183,8 +183,8 @@ def view_all_orders():
     has_orders = False
     for order in all_orders:
         has_orders = True
-        user = users.find_one({"_id": order["user_id"]})
-        car = cars.find_one({"_id": order["car_id"]})
+        user = users.find_one({"_id": ObjectId(order["user_id"])})
+        car = cars.find_one({"_id": ObjectId(order["car_id"])})
         print(
             f"Order ID: {order['_id']}\n"
             f"User: {user['name']} (Email: {user['email']})\n"
@@ -313,7 +313,7 @@ def main():
                 if user["role"] == "admin":
                     admin_dashboard()
                 elif user["role"] == "privileged_user":
-                    modify_inventory()
+                    admin_dashboard()
                 else:
                     user_dashboard(user)
         elif choice == "2":
