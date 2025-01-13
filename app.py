@@ -53,6 +53,16 @@ def register():
         print("Registration successful!")
         log_event(f"User {email} registered.")
 
+def show_users():
+    print("\n--- USERS ---\n")
+    for user in users.find():
+        print(f"{user['name']}")
+        print(f"Role: {user['role']}\n")
+    toContinue()
+
+def toContinue():
+    input("Press ENTER key to continue ")
+
 # Admin Dashboard
 def admin_dashboard():
     while True:
@@ -65,8 +75,7 @@ def admin_dashboard():
         print("6. Logout")
         choice = input("Enter your choice: ")
         if choice == "1":
-            for user in users.find():
-                print(user)
+            show_users()
         elif choice == "2":
             view_all_orders()  
         elif choice == "3":
@@ -196,6 +205,7 @@ def view_all_orders():
     
     if not has_orders:
         print("No orders have been placed yet.")
+    toContinue()
 
 # View User's Orders
 def view_my_orders(user):
@@ -216,6 +226,8 @@ def view_my_orders(user):
     
     if not has_orders:
         print("You have not placed any orders yet.")
+    
+    toContinue()
 
 # User Dashboard
 def user_dashboard(user):
@@ -258,6 +270,7 @@ def view_cars():
             f"Stock: {car['stock']} units\n"
             "-----------------------------"
         )
+    toContinue()
 
 # Purchase Car
 def purchase_car(user):
@@ -286,6 +299,10 @@ def purchase_car(user):
 def view_owned_cars(user):
     print("\n--- Cars You Own ---")
     user_data = users.find_one({"_id": user["_id"]})
+    
+    if len(user_data['owned_cars']) == 0:
+        print("\n You do not own any cars at the moment\n")
+
     for car in user_data.get("owned_cars", []):
         print(
             f"Make: {car['make']}\n"
@@ -298,6 +315,7 @@ def view_owned_cars(user):
             f"Price: ${car['price']}\n"
             "-----------------------------"
         )
+    toContinue()
 
 # Main Menu
 def main():
