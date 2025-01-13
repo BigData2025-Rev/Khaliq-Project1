@@ -24,16 +24,16 @@ Ensure you have the following installed:
 3. A compatible **IDE** (e.g., IntelliJ IDEA, Eclipse) or a terminal with proper configurations
 
 ### Steps to Run
-1. **Clone the Repository**
+1. Clone the Repository
   
 
-2. **Import dependencies** Make sure to install pymongo, bcrypt and logging by running:
+2. Import dependencies Make sure to install pymongo, bcrypt and logging by running:
 3. pip3 install bcrypt
 4. pip3 install pymongo
 5. pip3 install bcrypt
 
 
-6. **Run the Application**
+6. Run the Application
    Command: python app.py
 
 ---
